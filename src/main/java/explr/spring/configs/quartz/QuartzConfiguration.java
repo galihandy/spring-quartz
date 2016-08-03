@@ -50,7 +50,7 @@ public class QuartzConfiguration {
 
         scheduler.setWaitForJobsToCompleteOnShutdown(true);
         scheduler.setConfigLocation(new ClassPathResource("quartz.properties"));
-        scheduler.setAutoStartup(false); // default is true
+        //scheduler.setAutoStartup(false); // default is true
         //scheduler.setOverwriteExistingJobs(true);
         //scheduler.setApplicationContextSchedulerContextKey("applicationContext");
         scheduler.setJobFactory(autowiringSpringBeanJobFactory());
