@@ -34,6 +34,6 @@ public class ProfilesUpdaterJob implements Job{
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        System.out.println("The time is now " + dateFormat.format(new Date()));
+        updateProfileDesc();
     }
 }
