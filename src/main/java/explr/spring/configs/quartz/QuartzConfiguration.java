@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+
+import javax.sql.DataSource;
 
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
@@ -45,11 +48,17 @@ public class QuartzConfiguration {
     }
 
     @Bean
-    public SchedulerFactoryBean schedulerFactoryBean(JobDetail jobDetail, Trigger trigger) {
+    public SchedulerFactoryBean schedulerFactoryBean(
+            final DataSource dataSource,
+            final PlatformTransactionManager transactionManager,
+            JobDetail jobDetail,
+            Trigger trigger) {
         final SchedulerFactoryBean scheduler = new SchedulerFactoryBean();
 
         scheduler.setWaitForJobsToCompleteOnShutdown(true);
         scheduler.setConfigLocation(new ClassPathResource("quartz.properties"));
+        scheduler.setDataSource(dataSource);
+        scheduler.setTransactionManager(transactionManager);
         //scheduler.setAutoStartup(false); // default is true
         //scheduler.setOverwriteExistingJobs(true);
         //scheduler.setApplicationContextSchedulerContextKey("applicationContext");
