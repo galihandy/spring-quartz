@@ -17,7 +17,7 @@ public class FlywayConfigs {
     @Autowired
     DataSource dataSource;
 
-    //@Bean(name = "flyway")
+    @Bean(name = "flyway")
     public Flyway flywayInitializerDefault(DataSource dataSource) {
         Flyway flyway = new Flyway();
         flyway.setDataSource(dataSource);
