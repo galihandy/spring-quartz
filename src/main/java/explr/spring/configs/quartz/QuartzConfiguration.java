@@ -1,10 +1,9 @@
 package explr.spring.configs.quartz;
 
 import explr.spring.job.ProfilesUpdaterJob;
+import org.quartz.CronScheduleBuilder;
 import org.quartz.JobDetail;
-import org.quartz.SimpleScheduleBuilder;
 import org.quartz.Trigger;
-import org.quartz.TriggerBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -13,8 +12,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 
+import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
 
 /**
@@ -43,8 +42,10 @@ public class QuartzConfiguration {
                 .forJob(jobDetail)
                 .withIdentity("Qrtz_Trigger")
                 .withDescription("Sample trigger")
-                .withSchedule(simpleSchedule().repeatForever().withIntervalInMilliseconds(5000))
-                .build();
+                .withSchedule(
+                        cronSchedule("0/5 * * * * ?")
+                                .withMisfireHandlingInstructionFireAndProceed()
+                ).build();
     }
 
     @Bean
