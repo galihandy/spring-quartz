@@ -33,6 +33,7 @@ dependencies {
 	compile group: 'org.flywaydb', name: 'flyway-core', version: '4.0.3'
 	compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.2.3'
 	compile ('org.springframework:spring-context-support')
+	compile("org.springframework.boot:spring-boot-devtools")
 
 	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

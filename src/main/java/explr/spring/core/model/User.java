@@ -1,5 +1,7 @@
 package explr.spring.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,6 +18,7 @@ public class User {
     private String email;
 
     public User() {
+        id = 0;
     }
 
     public int getId() {

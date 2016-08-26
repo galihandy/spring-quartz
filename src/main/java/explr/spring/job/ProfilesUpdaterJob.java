@@ -24,7 +24,7 @@ public class ProfilesUpdaterJob implements Job{
 
     @Transactional
     public void updateProfileDesc() {
-        System.out.println("The time is now " + dateFormat.format(new Date()));
+        //System.out.println("The time is now " + dateFormat.format(new Date()));
         profileRepository.findAll().stream()
                 .map(p -> {
                     p.setDescription("desc " + dateFormat.format(new Date()));
